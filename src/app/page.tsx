@@ -2,48 +2,35 @@
 
 import { useState } from "react";
 
-import { getColor, COLORS, INTENSITIES } from "@/app/components/colors";
-import { Dropdown } from "./components/dropdown";
+import { getColor, COLORS } from "@/app/components/color/colors";
+import { ColorPicker } from "@/app/components/color/picker";
 
 export default function Home() {
-  const [primaryColor, setPrimaryColor] = useState<string>(COLORS[0]);
-  const [primaryIntensity, setPrimaryIntensity] = useState<string>(INTENSITIES[0]);
-  const [secondaryColor, setSecondaryColor] = useState<string>(COLORS[0]);
-  const [secondaryIntensity, setSecondaryIntensity] = useState<string>(INTENSITIES[0]);
+  const [primaryColor, setPrimaryColor] = useState<string>(COLORS[12]);
+  const [secondaryColor, setSecondaryColor] = useState<string>(COLORS[6]);
 
   return (
-    <div className={`flex min-h-screen flex-col items-center justify-between p-4 ${getColor("bg", secondaryColor, secondaryIntensity)}`}>
-      <div className="z-10 w-full max-w-7xl flex-1 items-stretch font-mono text-sm lg:flex">
-        <div className={`w-full flex flex-col p-4 rounded-lg ${getColor("bg", primaryColor, primaryIntensity)}`}>
-          <div className="text-center mb-4 font-bold text-lg">
-            Pick Your Colors
+    <div className={`flex min-h-screen flex-col items-center justify-between p-4 ${getColor("bg", secondaryColor, "500")}`}>
+      <div className={`grow z-10 w-full max-w-7xl font-mono text-sm flex flex-col p-4 rounded-lg shadow-2xl border border-black ${getColor("bg", primaryColor, "500")}`}>
+        <div className="text-center mb-4 font-bold text-lg">
+          Nathaniel Diamond
+        </div>
+        <div className="flex flex-row gap-2 items-stretch">
+          <div className={`grow-[10] p-8 rounded-2xl shadow-lg border border-black ${getColor("bg", secondaryColor, "500")}`}>
+            Loading....
           </div>
-          <div className="flex flex-row gap-2">
-            <Dropdown
+          <div className="grow flex flex-col gap-2 items-stretch">
+            <ColorPicker
+              color={primaryColor}
+              setColor={setPrimaryColor}
               name="Primary Color"
-              options={COLORS}
-              onSelect={(option) => setPrimaryColor(option ? option : COLORS[0])}
-              className="flex-1"
+              className={`shrink ${getColor("bg", secondaryColor, "500")}`}
               />
-            <Dropdown
-              name="Primary Intensity"
-              options={INTENSITIES}
-              onSelect={(option) => setPrimaryIntensity(option ? option : INTENSITIES[0])}
-              className="flex-1"
-              />
-          </div>
-          <div className="flex flex-row gap-2">
-            <Dropdown
+            <ColorPicker
+              color={secondaryColor}
+              setColor={setSecondaryColor}
               name="Secondary Color"
-              options={COLORS}
-              onSelect={(option) => setSecondaryColor(option ? option : COLORS[0])}
-              className="flex-1"
-              />
-            <Dropdown
-              name="Secondary Intensity"
-              options={INTENSITIES}
-              onSelect={(option) => setSecondaryIntensity(option ? option : INTENSITIES[0])}
-              className="flex-1"
+              className="shrink"
               />
           </div>
         </div>
