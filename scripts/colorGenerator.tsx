@@ -1,4 +1,4 @@
-import { TYPES, COLORS, INTENSITIES, ColorDict } from "../src/app/components/colors";
+import { TYPES, COLORS, INTENSITIES, ColorDict } from "../src/app/components/color/colors";
 
 function createColorDict() {
   const colorDict: ColorDict = {}
