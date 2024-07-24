@@ -7,7 +7,6 @@ import { getColor, COLORS } from "@/app/components/color/colors";
 type ColorPickerParams = {
   color: string,
   setColor: SetState<string>,
-  name: string,
   className?: string 
 }
 
@@ -35,7 +34,7 @@ function ColorTable({className, setColor, setSelected, setPreviewColor}: ColorTa
               height={COLOR_BOX_SIZE} 
               x={(index%n)*COLOR_BOX_SIZE} 
               y={(Math.floor(index/n))*COLOR_BOX_SIZE} 
-              className={`fill-current ${getColor("text", color, "500")}`} 
+              className={`cursor-pointer fill-current ${getColor("text", color, "500")}`} 
             />
           );
         })}
@@ -44,29 +43,19 @@ function ColorTable({className, setColor, setSelected, setPreviewColor}: ColorTa
   )
 }
 
-export function ColorPicker({color, setColor, name, className}: ColorPickerParams) {
+export function ColorPicker({color, setColor, className}: ColorPickerParams) {
   const [previewColor, setPreviewColor] = useState<Optional<string>>(undefined);
   const [selected, setSelected] = useState<boolean>(false);
 
   return (
-    <div className={`${className} flex flex-row justify-end items-start pt-6 gap-2 p-2 rounded-lg shadow-2xl border border-black`}>
-      <div className="flex flex-col gap-2">
-        <Label name={name}/>
-        <a className={`${!previewColor && 'hidden'} p-2 bg-white border border-black rounded-lg shadow-2xl ${previewColor && getColor("text", previewColor, "500")}`}>
-          {previewColor}
-        </a>
-      </div>
-      
-      <div className="w-24 h-32">
-        <div className="grow flex flex-col items-center">
-          <svg width={COLOR_PICKER_SIZE} height={COLOR_PICKER_SIZE} className={`border-black border fill-current shadow-2xl rounded-lg ${color ? getColor("text", color, "500"): 'text-white'}`}>
-            <rect width={COLOR_PICKER_SIZE} height={COLOR_PICKER_SIZE} onClick={() => setSelected(!selected)} />
-          </svg>  
-          <ColorTable className={`relative -inset-y-6 ${selected ? '': 'hidden'}`} setColor={setColor} setSelected={setSelected} setPreviewColor={setPreviewColor}/>     
-        </div>
-      </div>
-      
-        
-    </div>
+    <div className="relative w-24 h-24 flex flex-col justify-center items-center">
+      <a className={`${!previewColor && 'hidden'} absolute bottom-0 p-2 w-full bg-white border border-black rounded-lg shadow-2xl ${previewColor && getColor("text", previewColor, "500")}`}>
+        {previewColor}
+      </a>
+      <svg width={COLOR_PICKER_SIZE} height={COLOR_PICKER_SIZE} className={`cursor-pointer border-black border fill-current shadow-2xl rounded-lg ${color ? getColor("text", color, "500"): 'text-white'}`}>
+        <rect width={COLOR_PICKER_SIZE} height={COLOR_PICKER_SIZE} onClick={() => setSelected(!selected)} />
+      </svg>  
+      <ColorTable className={`absolute -inset-y-16 ${selected ? '': 'hidden'}`} setColor={setColor} setSelected={setSelected} setPreviewColor={setPreviewColor}/>     
+    </div>  
   )
 }
