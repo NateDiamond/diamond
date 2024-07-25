@@ -49,14 +49,24 @@ export default function Home() {
               <X className="group-hover:animate-bounce"/>
             </Button>
           </div>
-          <div className="flex flex-row items-stretch gap-4">
+          <div className="grid grid-cols-2 gap-4">
             <Button className="group" color={secondaryColor} onPress={() => window.open("https://en.wikipedia.org/wiki/Cornell_University_College_of_Engineering")}>
               <div className="py-4">
                 <img className="group-hover:animate-bounce" width={100} src="cornell.png"/>
               </div>
             </Button>
-            <Button className="group" color={secondaryColor} onPress={() => window.open("https://www.machonyaakov.org/")}>
+            <Button className="group" color={secondaryColor} onPress={() => window.open("https://www.machonyaakov.org")}>
               <img className="group-hover:animate-bounce" width={150} src="machon.gif" />
+            </Button>
+          </div>
+          <div className="grid grid-cols-2 gap-4">
+            <Button className="group" color={secondaryColor} onPress={() => window.open("https://www.doginalsbot.io")}>
+              <div className="py-4">
+                <img className="group-hover:animate-bounce" width={100} src="doginalsBotLogo.webp"/>
+              </div>
+            </Button>
+            <Button className="group" color={secondaryColor} onPress={() => window.open("https://www.wildtangz.com")}>
+              <img className="group-hover:animate-bounce" width={100} src="wildtangz.png" />
             </Button>
           </div>
           <div className="grow flex flex-row justify-end items-end gap-2">
