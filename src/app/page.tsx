@@ -28,7 +28,7 @@ export default function Home() {
       </Dialog>
       <div className={`flex min-h-screen flex-col items-center justify-between p-4 ${getColor("bg", secondaryColor, "500")} ${resumeModalVisible ? 'opacity-50' : ''}`}>
         <div className={`grow w-full max-w-7xl font-mono text-sm flex flex-col p-8 gap-4 rounded-lg shadow-2xl border border-black ${getColor("bg", primaryColor, "500")}`}>
-          <div className={`group flex flex-row gap-2 justify-center items-center py-10 rounded-lg shadow-2xl border border-black ${getColor("bg", secondaryColor, "500")}`}>
+          <div className={`group flex flex-row px-4 gap-2 justify-center items-center py-10 rounded-lg shadow-2xl border border-black ${getColor("bg", secondaryColor, "500")}`}>
             <img className="w-10 h-auto group-hover:animate-bounce" src="icon.png"/>
             <div className="text-center font-bold text-xl">
               Nathaniel Diamond
@@ -69,17 +69,46 @@ export default function Home() {
               <img className="group-hover:animate-bounce" width={100} src="wildtangz.png" />
             </Button>
           </div>
-          <div className="grow flex flex-row justify-end items-end gap-2">
-            <ColorPicker
-              color={primaryColor}
-              setColor={setPrimaryColor}
-              className={`shrink`}
-              />
-            <ColorPicker
-              color={secondaryColor}
-              setColor={setSecondaryColor}
-              className="shrink"
-              />
+          <div className={`flex flex-col sm:flex-row gap-2 items-stretch`}>
+            <Button className="group" color={secondaryColor} onPress={() => window.open("https://reactnative.dev")}>
+              <div className="pt-2 sm:py-0">
+                <img className="group-hover:animate-bounce" width={100} src="react.webp" />
+              </div>
+            </Button>
+            <Button className="group" color={secondaryColor} onPress={() => window.open("https://www.javascript.com")}>
+              <div className="pt-2 sm:py-0">
+                <img className="group-hover:animate-bounce" width={100} src="js.webp" />
+              </div>
+            </Button>
+            <Button className="group" color={secondaryColor} onPress={() => window.open("https://tailwindcss.com")}>
+              <div className="py-2 sm:py-0">
+                <img className="group-hover:animate-bounce" width={100} src="tailwind.png" />
+              </div>
+            </Button>
+            <Button className="group" color={secondaryColor} onPress={() => window.open("https://aws.amazon.com")}>
+              <div className="pt-2 sm:py-0">
+                <img className="group-hover:animate-bounce" width={100} src="aws.png" />
+              </div>
+            </Button>
+              <Button className="group" color={secondaryColor} onPress={() => window.open("https://www.python.org")}>
+                <div className="pt-2">
+                  <img className="group-hover:animate-bounce" width={100} src="python.png" />
+                </div>     
+              </Button>
+          </div>
+          <div>
+            <div className="grow flex flex-row justify-center sm:justify-end items-end gap-2">
+              <ColorPicker
+                color={primaryColor}
+                setColor={setPrimaryColor}
+                className={`shrink`}
+                />
+              <ColorPicker
+                color={secondaryColor}
+                setColor={setSecondaryColor}
+                className="shrink"
+                />
+            </div>
           </div>
         </div>
       </div>
