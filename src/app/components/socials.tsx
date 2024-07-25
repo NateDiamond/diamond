@@ -1,6 +1,8 @@
-export function Github() {
+type IconParams = {className?: string};
+
+export function Github({className}: IconParams) {
   return (
-    <span className="[&>svg]:h-5 [&>svg]:w-5">
+    <span className={`${className} [&>svg]:h-5 [&>svg]:w-5`}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="currentColor"
@@ -13,9 +15,9 @@ export function Github() {
   );
 }
 
-export function LinkedIn() {
+export function LinkedIn({className}: IconParams) {
   return (
-    <span className="[&>svg]:h-5 [&>svg]:w-5">
+    <span className={`${className} [&>svg]:h-5 [&>svg]:w-5`}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="currentColor"
@@ -28,9 +30,9 @@ export function LinkedIn() {
   );
 }
 
-export function X() {
+export function X({className}: IconParams) {
   return (
-    <span className="[&>svg]:h-5 [&>svg]:w-5">
+    <span className={`${className} [&>svg]:h-5 [&>svg]:w-5`}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="currentColor"
