@@ -30,7 +30,7 @@ export default function Home() {
         <div className={`grow w-full max-w-7xl font-mono text-sm flex flex-col p-8 gap-4 rounded-lg shadow-2xl border border-black ${getColor("bg", primaryColor, "500")}`}>
           <div className={`group flex flex-row px-4 gap-2 justify-center items-center py-10 rounded-lg shadow-2xl border border-black ${getColor("bg", secondaryColor, "500")}`}>
             <img className="w-10 h-auto group-hover:animate-bounce" src="icon.png"/>
-            <div className="text-center font-bold text-xl">
+            <div className="text-center font-light font-josefin text-2xl">
               Nathaniel Diamond
             </div>
             <img className="w-10 h-auto group-hover:animate-bounce" src="icon.png"/>
