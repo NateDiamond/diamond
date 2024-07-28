@@ -1,26 +1,35 @@
 "use client";
 
-import { DocumentTextIcon, MoonIcon, StarIcon, SunIcon } from "@heroicons/react/24/outline";
-import { useState } from "react";
+import { MoonIcon, StarIcon, SunIcon } from "@heroicons/react/24/outline";
+import { useState, useEffect } from "react";
 import { Dialog, DialogPanel } from "@headlessui/react";
 
 import { getColor, COLORS } from "@/app/components/color/colors";
 import { ColorPicker } from "@/app/components/color/picker";
 import { Button } from "./components/button";
-import { Github, LinkedIn, X } from "./components/socials";
+import { Github, LinkedIn, Resume, X, Diamond } from "./components/icons";
 import { Toggle } from "./components/toggle";
-import { BRIGHTNESS, INTENSITY, getIntensity } from "./components/color/brightness";
-import { Diamond } from "./components/extra";
+import { BRIGHTNESS, INTENSITY } from "./components/color/brightness";
+import { Optional } from "./components/types";
 
 function getRandom(n: number) {
   return Math.floor(Math.random() * n);
 }
 
 export default function Home() {
-  const [primaryColor, setPrimaryColor] = useState<string>(COLORS[getRandom(COLORS.length)]);
-  const [secondaryColor, setSecondaryColor] = useState<string>(COLORS[getRandom(COLORS.length)]);
+  const [primaryColor, setPrimaryColor] = useState<Optional<string>>(undefined);
+  const [secondaryColor, setSecondaryColor] = useState<Optional<string>>(undefined);
   const [resumeModalVisible, setResumeModalVisible] = useState<boolean>(false);
   const [brightness, setBrightness] = useState<BRIGHTNESS>(BRIGHTNESS.LIGHT);
+
+  useEffect(() => {
+    setPrimaryColor(COLORS[getRandom(COLORS.length)]);
+    setSecondaryColor(COLORS[getRandom(COLORS.length)]);
+  }, [])
+
+  if (!(primaryColor && secondaryColor)) {
+    return <div className="text-center pt-10">Loading...</div>
+  }
 
   return (
     <>
@@ -33,72 +42,73 @@ export default function Home() {
           </div>
         </div>
       </Dialog>
-      <div className={`flex min-h-screen flex-col items-center justify-between p-4 ${getColor("bg", secondaryColor, getIntensity(brightness, INTENSITY.LOW))} ${resumeModalVisible ? 'opacity-50' : ''}`}>
-        <div className={`grow w-full max-w-7xl font-mono text-sm flex flex-col p-8 gap-4 rounded-lg shadow-2xl border border-black ${getColor("bg", primaryColor, getIntensity(brightness, INTENSITY.HIGH))}`}>
-          <div className={`group flex flex-row px-4 gap-2 justify-center items-center py-10 rounded-lg shadow-2xl border border-black ${getColor("bg", secondaryColor, getIntensity(brightness, INTENSITY.MEDIUM))}`}>
-            {/* <img className="w-10 h-auto group-hover:animate-bounce" src="icon.png"/> */}
-            <Diamond />
-            <div className="text-center font-light font-josefin text-2xl">
-              Nathaniel Diamond
-            </div>
-            <Diamond />
-          </div>
+      <div className={`flex min-h-screen flex-col items-center justify-between p-4 bg-gradient-to-br ${getColor("from", primaryColor, brightness, INTENSITY.HIGH)} ${getColor("to", secondaryColor, brightness, INTENSITY.HIGH)} ${resumeModalVisible ? 'opacity-50' : ''}`}>
+        <div className={`grow w-full max-w-7xl font-mono text-sm flex flex-col p-8 gap-4 rounded-lg shadow-2xl border border-black bg-gradient-to-br ${getColor("from", secondaryColor, brightness, INTENSITY.LOW)} ${getColor("to", primaryColor, brightness, INTENSITY.HIGH)}`}>
+          <Button className="group" color={primaryColor} secondaryColor={secondaryColor} brightness={brightness} pressable={false}>
+            <>
+              <Diamond className="group-hover:animate-bounce" color={primaryColor} secondaryColor={secondaryColor} brightness={brightness} />
+              <div className={`${getColor("text", secondaryColor, brightness, INTENSITY.MEDIUM, true, false)} text-center font-light font-josefin text-2xl`}>
+                Nathaniel Diamond
+              </div>
+              <Diamond className="group-hover:animate-bounce" color={primaryColor} secondaryColor={secondaryColor} brightness={brightness} />
+            </>
+          </Button>
           <div className={`flex flex-row gap-2 items-start`}>
-            <Button className="group" color={secondaryColor} brightness={brightness} onPress={() => {setResumeModalVisible(true)}}>
-              <DocumentTextIcon aria-hidden="true" className="group-hover:animate-bounce -ml-0.5 h-5 w-5" />
+            <Button className="group" color={primaryColor} secondaryColor={secondaryColor} brightness={brightness} onPress={() => {setResumeModalVisible(true)}}>
+              <Resume className="group-hover:animate-bounce" color={primaryColor} secondaryColor={secondaryColor} brightness={brightness}/>
             </Button>
-            <Button className="group" color={secondaryColor} brightness={brightness} onPress={() => window.open("https://www.github.com/NateDiamond")}>
-              <Github className="group-hover:animate-bounce"/>
+            <Button className="group" color={primaryColor} secondaryColor={secondaryColor} brightness={brightness} onPress={() => window.open("https://www.github.com/NateDiamond")}>
+              <Github className="group-hover:animate-bounce" color={primaryColor} secondaryColor={secondaryColor} brightness={brightness}/>
             </Button> 
-            <Button className="group" color={secondaryColor} brightness={brightness} onPress={() => window.open("https://www.linkedin.com/in/nathaniel-diamond-225241127")}>
-              <LinkedIn className="group-hover:animate-bounce"/>
+            <Button className="group" color={primaryColor} secondaryColor={secondaryColor} brightness={brightness} onPress={() => window.open("https://www.linkedin.com/in/nathaniel-diamond-225241127")}>
+              <LinkedIn className="group-hover:animate-bounce" color={primaryColor} secondaryColor={secondaryColor} brightness={brightness}/>
             </Button>
-            <Button className="group" color={secondaryColor}brightness={brightness}  onPress={() => window.open("https://x.com/N8Diamond")}>
-              <X className="group-hover:animate-bounce"/>
+            <Button className="group" color={primaryColor} secondaryColor={secondaryColor} brightness={brightness}  onPress={() => window.open("https://x.com/N8Diamond")}>
+              <X className="group-hover:animate-bounce" color={primaryColor} secondaryColor={secondaryColor} brightness={brightness}/>
             </Button>
           </div>
           <div className="grid grid-cols-2 gap-4">
-            <Button className="group" color={secondaryColor} brightness={brightness} onPress={() => window.open("https://en.wikipedia.org/wiki/Cornell_University_College_of_Engineering")}>
+            <Button className="group" color={primaryColor} secondaryColor={secondaryColor} brightness={brightness} onPress={() => window.open("https://en.wikipedia.org/wiki/Cornell_University_College_of_Engineering")}>
               <div className="py-4">
                 <img className="group-hover:animate-bounce" width={100} src="cornell.png"/>
               </div>
             </Button>
-            <Button className="group" color={secondaryColor} brightness={brightness} onPress={() => window.open("https://www.machonyaakov.org")}>
+            <Button className="group" color={primaryColor} secondaryColor={secondaryColor} brightness={brightness} onPress={() => window.open("https://www.machonyaakov.org")}>
               <img className="group-hover:animate-bounce" width={150} src="machon.gif" />
             </Button>
           </div>
           <div className="grid grid-cols-2 gap-4">
-            <Button className="group" color={secondaryColor} brightness={brightness} onPress={() => window.open("https://www.doginalsbot.io")}>
+            <Button className="group" color={primaryColor} secondaryColor={secondaryColor} brightness={brightness} onPress={() => window.open("https://www.doginalsbot.io")}>
               <div className="py-4">
                 <img className="group-hover:animate-bounce" width={100} src="doginalsBotLogo.webp"/>
               </div>
             </Button>
-            <Button className="group" color={secondaryColor} brightness={brightness} onPress={() => window.open("https://www.wildtangz.com")}>
+            <Button className="group" color={primaryColor} secondaryColor={secondaryColor} brightness={brightness} onPress={() => window.open("https://www.wildtangz.com")}>
               <img className="group-hover:animate-bounce" width={100} src="wildtangz.png" />
             </Button>
           </div>
           <div className={`flex flex-col sm:flex-row gap-2 items-stretch`}>
-            <Button className="group" color={secondaryColor} brightness={brightness} onPress={() => window.open("https://reactnative.dev")}>
+            <Button className="group" color={primaryColor} secondaryColor={secondaryColor} brightness={brightness} onPress={() => window.open("https://reactnative.dev")}>
               <div className="pt-2 sm:py-0">
                 <img className="group-hover:animate-bounce" width={100} src="react.webp" />
               </div>
             </Button>
-            <Button className="group" color={secondaryColor} brightness={brightness} onPress={() => window.open("https://www.javascript.com")}>
+            <Button className="group" color={primaryColor} secondaryColor={secondaryColor} brightness={brightness} onPress={() => window.open("https://www.javascript.com")}>
               <div className="pt-2 sm:py-0">
                 <img className="group-hover:animate-bounce" width={100} src="js.webp" />
               </div>
             </Button>
-            <Button className="group" color={secondaryColor} brightness={brightness} onPress={() => window.open("https://tailwindcss.com")}>
+            <Button className="group" color={primaryColor} secondaryColor={secondaryColor} brightness={brightness} onPress={() => window.open("https://tailwindcss.com")}>
               <div className="py-2 sm:py-0">
                 <img className="group-hover:animate-bounce" width={100} src="tailwind.png" />
               </div>
             </Button>
-            <Button className="group" color={secondaryColor} brightness={brightness} onPress={() => window.open("https://aws.amazon.com")}>
+            <Button className="group" color={primaryColor} secondaryColor={secondaryColor} brightness={brightness} onPress={() => window.open("https://aws.amazon.com")}>
               <div className="pt-2 sm:py-0">
                 <img className="group-hover:animate-bounce" width={100} src="aws.png" />
               </div>
             </Button>
-              <Button className="group" color={secondaryColor} brightness={brightness} onPress={() => window.open("https://www.python.org")}>
+              <Button className="group" color={primaryColor} secondaryColor={secondaryColor} brightness={brightness} onPress={() => window.open("https://www.python.org")}>
                 <div className="pt-2">
                   <img className="group-hover:animate-bounce" width={100} src="python.png" />
                 </div>     
@@ -107,9 +117,9 @@ export default function Home() {
           <div className="flex flex-row justify-between items-center">
             <Toggle
               options={[
-                {name: BRIGHTNESS.DARK, icon: <MoonIcon className={`text-black ${getColor("fill", primaryColor, getIntensity(brightness, INTENSITY.MEDIUM))}`} />},
-                {name: BRIGHTNESS.COLOR, icon: <StarIcon className={`text-black ${getColor("fill", primaryColor, getIntensity(brightness, INTENSITY.MEDIUM))}`}/>},
-                {name: BRIGHTNESS.LIGHT, icon: <SunIcon className={`text-black ${getColor("fill", primaryColor, getIntensity(brightness, INTENSITY.MEDIUM))}`}/>}
+                {name: BRIGHTNESS.DARK, icon: <MoonIcon/>},
+                {name: BRIGHTNESS.COLOR, icon: <StarIcon/>},
+                {name: BRIGHTNESS.LIGHT, icon: <SunIcon/>}
               ]}
               selectedOption={brightness}
               setSelectedOption={setBrightness}
@@ -133,7 +143,7 @@ export default function Home() {
             </div>
           </div>
           <div className="flex flex-row justify-end">
-            <a className="hover:text-white font-josefin" href="mailto:ndiamond39@gmail.com">Contact me</a>
+            <a className={`${getColor("text", primaryColor, brightness, INTENSITY.HIGH, true)} ${getColor("hover:text", secondaryColor, brightness, INTENSITY.HIGH, true, false)} font-josefin`} href="mailto:ndiamond39@gmail.com">Contact me</a>
           </div>
         </div>
       </div>
