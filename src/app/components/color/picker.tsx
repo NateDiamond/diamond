@@ -51,14 +51,14 @@ export function ColorPicker({color, setColor, brightness, className}: ColorPicke
   const [selected, setSelected] = useState<boolean>(false);
 
   return (
-    <div className="relative w-24 h-24 flex flex-col justify-center items-center">
+    <div className="relative w-24 h-24 flex flex-col justify-center items-end">
       <a className={`${!previewColor && 'hidden'} absolute bottom-0 p-2 w-full bg-white border border-black rounded-lg shadow-2xl ${previewColor && getColor("text", previewColor, getIntensity(brightness, INTENSITY.MEDIUM))}`}>
         {previewColor}
       </a>
       <svg width={COLOR_PICKER_SIZE} height={COLOR_PICKER_SIZE} className={`cursor-pointer border-black border fill-current shadow-2xl rounded-lg ${color ? getColor("text", color, getIntensity(brightness, INTENSITY.MEDIUM)): 'text-white'}`}>
         <rect width={COLOR_PICKER_SIZE} height={COLOR_PICKER_SIZE} onClick={() => setSelected(!selected)} />
       </svg>  
-      <ColorTable className={`absolute -inset-y-16 ${selected ? '': 'hidden'}`} setColor={setColor} setSelected={setSelected} setPreviewColor={setPreviewColor} brightness={brightness}/>     
+      <ColorTable className={`absolute -inset-y-16 inset-x-6 ${selected ? '': 'hidden'}`} setColor={setColor} setSelected={setSelected} setPreviewColor={setPreviewColor} brightness={brightness}/>     
     </div>  
   )
 }

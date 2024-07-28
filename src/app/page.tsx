@@ -117,7 +117,7 @@ export default function Home() {
               secondaryColor={secondaryColor}
               brightness={brightness}
             />
-            <div className="grow flex flex-row justify-center sm:justify-end items-end gap-2">
+            <div className="grow flex flex-row justify-end items-end gap-2">
               <ColorPicker
                 color={primaryColor}
                 setColor={setPrimaryColor}
@@ -131,6 +131,9 @@ export default function Home() {
                 className="shrink"
                 />
             </div>
+          </div>
+          <div className="flex flex-row justify-end">
+            <a className="hover:text-white font-josefin" href="mailto:ndiamond39@gmail.com">Contact me</a>
           </div>
         </div>
       </div>
