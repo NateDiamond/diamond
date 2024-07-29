@@ -30,6 +30,7 @@ function ColorTable({className, color, setColor, setSelected, setPreviewColor, b
         { COLORS.map((color, index) => {
           return (
             <rect
+              key={color}
               onMouseOver={() => setPreviewColor(color)} 
               onMouseLeave={() => setPreviewColor(undefined)} 
               onClick={() => {setSelected(false); setColor(color)}}
