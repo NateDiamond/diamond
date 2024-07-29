@@ -36,7 +36,7 @@ function ColorTable({className, setColor, setSelected, setPreviewColor, brightne
               height={COLOR_BOX_SIZE} 
               x={(index%n)*COLOR_BOX_SIZE} 
               y={(Math.floor(index/n))*COLOR_BOX_SIZE} 
-              className={`cursor-pointer fill-current ${getColor("text", color, brightness, INTENSITY.MEDIUM)}`} 
+              className={`cursor-pointer fill-current ${getColor("text", color, brightness, INTENSITY.HIGH)}`} 
             />
           );
         })}
@@ -51,10 +51,10 @@ export function ColorPicker({color, setColor, brightness, className}: ColorPicke
 
   return (
     <div className="relative w-24 h-24 flex flex-col justify-center items-end">
-      <a className={`${!previewColor && 'hidden'} absolute bottom-0 p-2 w-full bg-white border border-black rounded-lg shadow-2xl ${previewColor && getColor("text", previewColor, brightness, INTENSITY.MEDIUM)}`}>
+      <a className={`${!previewColor && 'hidden'} absolute bottom-0 p-2 w-full bg-white border border-black rounded-lg shadow-2xl ${previewColor && getColor("text", previewColor, brightness, INTENSITY.HIGH)}`}>
         {previewColor}
       </a>
-      <svg width={COLOR_PICKER_SIZE} height={COLOR_PICKER_SIZE} className={`cursor-pointer border-black border fill-current shadow-2xl rounded-lg ${color ? getColor("text", color, brightness, INTENSITY.MEDIUM): 'text-white'}`}>
+      <svg width={COLOR_PICKER_SIZE} height={COLOR_PICKER_SIZE} className={`cursor-pointer border-black border fill-current shadow-2xl rounded-lg ${color ? getColor("text", color, brightness, INTENSITY.HIGH): 'text-white'}`}>
         <rect width={COLOR_PICKER_SIZE} height={COLOR_PICKER_SIZE} onClick={() => setSelected(!selected)} />
       </svg>  
       <ColorTable className={`absolute -inset-y-16 inset-x-6 z-10 ${selected ? '': 'hidden'}`} setColor={setColor} setSelected={setSelected} setPreviewColor={setPreviewColor} brightness={brightness}/>     

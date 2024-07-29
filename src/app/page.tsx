@@ -43,11 +43,11 @@ export default function Home() {
         </div>
       </Dialog>
       <div className={`flex min-h-screen flex-col items-center justify-between p-4 bg-gradient-to-br ${getColor("from", primaryColor, brightness, INTENSITY.HIGH)} ${getColor("to", secondaryColor, brightness, INTENSITY.HIGH)} ${resumeModalVisible ? 'opacity-50' : ''}`}>
-        <div className={`grow w-full max-w-7xl font-mono text-sm flex flex-col p-8 gap-4 rounded-lg shadow-2xl border border-black bg-gradient-to-br ${getColor("from", secondaryColor, brightness, INTENSITY.LOW)} ${getColor("to", primaryColor, brightness, INTENSITY.HIGH)}`}>
+        <div className={`grow w-full max-w-7xl font-mono text-sm flex flex-col p-8 gap-4 rounded-lg shadow-2xl border ${getColor("border", secondaryColor, brightness, INTENSITY.HIGH, true, false)} bg-gradient-to-br ${getColor("from", secondaryColor, brightness, INTENSITY.HIGH)} ${getColor("to", primaryColor, brightness, INTENSITY.HIGH)}`}>
           <Button className="group" color={primaryColor} secondaryColor={secondaryColor} brightness={brightness} pressable={false}>
             <>
               <Diamond className="group-hover:animate-bounce" color={primaryColor} secondaryColor={secondaryColor} brightness={brightness} />
-              <div className={`${getColor("text", secondaryColor, brightness, INTENSITY.MEDIUM, true, false)} text-center font-light font-josefin text-2xl`}>
+              <div className={`${getColor("text", secondaryColor, brightness, INTENSITY.HIGH, true, false)} text-center font-light font-josefin text-2xl`}>
                 Nathaniel Diamond
               </div>
               <Diamond className="group-hover:animate-bounce" color={primaryColor} secondaryColor={secondaryColor} brightness={brightness} />
@@ -143,7 +143,7 @@ export default function Home() {
             </div>
           </div>
           <div className="flex flex-row justify-end">
-            <a className={`${getColor("text", primaryColor, brightness, INTENSITY.HIGH, true)} ${getColor("hover:text", secondaryColor, brightness, INTENSITY.HIGH, true, false)} font-josefin`} href="mailto:ndiamond39@gmail.com">Contact me</a>
+            <a className={`${getColor("text", primaryColor, brightness, INTENSITY.HIGH, true)} ${getColor("hover:text", secondaryColor, brightness, INTENSITY.HIGH, true, false)} font-josefin hover:font-bold`} href="mailto:ndiamond39@gmail.com">Contact me</a>
           </div>
         </div>
       </div>
