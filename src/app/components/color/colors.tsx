@@ -1,4 +1,4 @@
-import { BRIGHTNESS, INTENSITY, getIntensityString } from "./brightness";
+import { BRIGHTNESS, getIntensityString } from "./brightness";
 
 export type ColorDict = {
   [type: string]: {
@@ -14,7 +14,7 @@ export type BlackAndWhiteDict = {
   }
 }
 
-export const TYPES = ["text", "bg", "fill", "from", "to", "hover:bg", "hover:text", "group-hover:text", "border", "hover:border"];
+export const TYPES = ["text", "bg", "fill", "from", "to", "hover:bg", "hover:text", "group-hover:text", "border", "hover:border", "stroke"];
 export const COLORS = [
   "slate",
   "gray",
@@ -41,14 +41,14 @@ export const COLORS = [
 ];
 export const INTENSITIES = ["50", "100", "200", "300", "400", "500", "600", "700", "800", "900", "950"];
 
-export function getColor(type: string, color: string, brightness: BRIGHTNESS, intensity: INTENSITY, inverted: boolean = false, primary: boolean = true) {
+export function getColor(type: string, color: string, brightness: BRIGHTNESS, inverted: boolean = false, primary: boolean = true) {
   if (inverted && brightness === BRIGHTNESS.COLOR) {
     if (primary) {
       return BLACK_AND_WHITE_DICT[type]["white"];
     }
     return BLACK_AND_WHITE_DICT[type]["black"];
   }
-  return COLOR_DICT[type][color][getIntensityString(brightness, intensity, inverted)];
+  return COLOR_DICT[type][color][getIntensityString(brightness, inverted)];
 }
 
 const BLACK_AND_WHITE_DICT: BlackAndWhiteDict = {
@@ -61,7 +61,8 @@ const BLACK_AND_WHITE_DICT: BlackAndWhiteDict = {
   'hover:text': { black: 'hover:text-black', white: 'hover:text-white' },
   'group-hover:text': { black: 'group-hover:text-black', white: 'group-hover:text-white' },
   border: { black: 'border-black', white: 'border-white' },
-  'hover:border': { black: 'hover:border-black', white: 'hover:border-white' }
+  'hover:border': { black: 'hover:border-black', white: 'hover:border-white' },
+  stroke: { black: 'stroke-black', white: 'stroke-white' }
 }
 
 const COLOR_DICT: ColorDict = {
@@ -2943,6 +2944,294 @@ const COLOR_DICT: ColorDict = {
       '800': 'hover:border-rose-800',
       '900': 'hover:border-rose-900',
       '950': 'hover:border-rose-950'
+    }
+  },
+  stroke: {
+    slate: {
+      '50': 'stroke-slate-50',
+      '100': 'stroke-slate-100',
+      '200': 'stroke-slate-200',
+      '300': 'stroke-slate-300',
+      '400': 'stroke-slate-400',
+      '500': 'stroke-slate-500',
+      '600': 'stroke-slate-600',
+      '700': 'stroke-slate-700',
+      '800': 'stroke-slate-800',
+      '900': 'stroke-slate-900',
+      '950': 'stroke-slate-950'
+    },
+    gray: {
+      '50': 'stroke-gray-50',
+      '100': 'stroke-gray-100',
+      '200': 'stroke-gray-200',
+      '300': 'stroke-gray-300',
+      '400': 'stroke-gray-400',
+      '500': 'stroke-gray-500',
+      '600': 'stroke-gray-600',
+      '700': 'stroke-gray-700',
+      '800': 'stroke-gray-800',
+      '900': 'stroke-gray-900',
+      '950': 'stroke-gray-950'
+    },
+    neutral: {
+      '50': 'stroke-neutral-50',
+      '100': 'stroke-neutral-100',
+      '200': 'stroke-neutral-200',
+      '300': 'stroke-neutral-300',
+      '400': 'stroke-neutral-400',
+      '500': 'stroke-neutral-500',
+      '600': 'stroke-neutral-600',
+      '700': 'stroke-neutral-700',
+      '800': 'stroke-neutral-800',
+      '900': 'stroke-neutral-900',
+      '950': 'stroke-neutral-950'
+    },
+    zinc: {
+      '50': 'stroke-zinc-50',
+      '100': 'stroke-zinc-100',
+      '200': 'stroke-zinc-200',
+      '300': 'stroke-zinc-300',
+      '400': 'stroke-zinc-400',
+      '500': 'stroke-zinc-500',
+      '600': 'stroke-zinc-600',
+      '700': 'stroke-zinc-700',
+      '800': 'stroke-zinc-800',
+      '900': 'stroke-zinc-900',
+      '950': 'stroke-zinc-950'
+    },
+    stone: {
+      '50': 'stroke-stone-50',
+      '100': 'stroke-stone-100',
+      '200': 'stroke-stone-200',
+      '300': 'stroke-stone-300',
+      '400': 'stroke-stone-400',
+      '500': 'stroke-stone-500',
+      '600': 'stroke-stone-600',
+      '700': 'stroke-stone-700',
+      '800': 'stroke-stone-800',
+      '900': 'stroke-stone-900',
+      '950': 'stroke-stone-950'
+    },
+    red: {
+      '50': 'stroke-red-50',
+      '100': 'stroke-red-100',
+      '200': 'stroke-red-200',
+      '300': 'stroke-red-300',
+      '400': 'stroke-red-400',
+      '500': 'stroke-red-500',
+      '600': 'stroke-red-600',
+      '700': 'stroke-red-700',
+      '800': 'stroke-red-800',
+      '900': 'stroke-red-900',
+      '950': 'stroke-red-950'
+    },
+    orange: {
+      '50': 'stroke-orange-50',
+      '100': 'stroke-orange-100',
+      '200': 'stroke-orange-200',
+      '300': 'stroke-orange-300',
+      '400': 'stroke-orange-400',
+      '500': 'stroke-orange-500',
+      '600': 'stroke-orange-600',
+      '700': 'stroke-orange-700',
+      '800': 'stroke-orange-800',
+      '900': 'stroke-orange-900',
+      '950': 'stroke-orange-950'
+    },
+    amber: {
+      '50': 'stroke-amber-50',
+      '100': 'stroke-amber-100',
+      '200': 'stroke-amber-200',
+      '300': 'stroke-amber-300',
+      '400': 'stroke-amber-400',
+      '500': 'stroke-amber-500',
+      '600': 'stroke-amber-600',
+      '700': 'stroke-amber-700',
+      '800': 'stroke-amber-800',
+      '900': 'stroke-amber-900',
+      '950': 'stroke-amber-950'
+    },
+    yellow: {
+      '50': 'stroke-yellow-50',
+      '100': 'stroke-yellow-100',
+      '200': 'stroke-yellow-200',
+      '300': 'stroke-yellow-300',
+      '400': 'stroke-yellow-400',
+      '500': 'stroke-yellow-500',
+      '600': 'stroke-yellow-600',
+      '700': 'stroke-yellow-700',
+      '800': 'stroke-yellow-800',
+      '900': 'stroke-yellow-900',
+      '950': 'stroke-yellow-950'
+    },
+    lime: {
+      '50': 'stroke-lime-50',
+      '100': 'stroke-lime-100',
+      '200': 'stroke-lime-200',
+      '300': 'stroke-lime-300',
+      '400': 'stroke-lime-400',
+      '500': 'stroke-lime-500',
+      '600': 'stroke-lime-600',
+      '700': 'stroke-lime-700',
+      '800': 'stroke-lime-800',
+      '900': 'stroke-lime-900',
+      '950': 'stroke-lime-950'
+    },
+    green: {
+      '50': 'stroke-green-50',
+      '100': 'stroke-green-100',
+      '200': 'stroke-green-200',
+      '300': 'stroke-green-300',
+      '400': 'stroke-green-400',
+      '500': 'stroke-green-500',
+      '600': 'stroke-green-600',
+      '700': 'stroke-green-700',
+      '800': 'stroke-green-800',
+      '900': 'stroke-green-900',
+      '950': 'stroke-green-950'
+    },
+    emerald: {
+      '50': 'stroke-emerald-50',
+      '100': 'stroke-emerald-100',
+      '200': 'stroke-emerald-200',
+      '300': 'stroke-emerald-300',
+      '400': 'stroke-emerald-400',
+      '500': 'stroke-emerald-500',
+      '600': 'stroke-emerald-600',
+      '700': 'stroke-emerald-700',
+      '800': 'stroke-emerald-800',
+      '900': 'stroke-emerald-900',
+      '950': 'stroke-emerald-950'
+    },
+    teal: {
+      '50': 'stroke-teal-50',
+      '100': 'stroke-teal-100',
+      '200': 'stroke-teal-200',
+      '300': 'stroke-teal-300',
+      '400': 'stroke-teal-400',
+      '500': 'stroke-teal-500',
+      '600': 'stroke-teal-600',
+      '700': 'stroke-teal-700',
+      '800': 'stroke-teal-800',
+      '900': 'stroke-teal-900',
+      '950': 'stroke-teal-950'
+    },
+    cyan: {
+      '50': 'stroke-cyan-50',
+      '100': 'stroke-cyan-100',
+      '200': 'stroke-cyan-200',
+      '300': 'stroke-cyan-300',
+      '400': 'stroke-cyan-400',
+      '500': 'stroke-cyan-500',
+      '600': 'stroke-cyan-600',
+      '700': 'stroke-cyan-700',
+      '800': 'stroke-cyan-800',
+      '900': 'stroke-cyan-900',
+      '950': 'stroke-cyan-950'
+    },
+    sky: {
+      '50': 'stroke-sky-50',
+      '100': 'stroke-sky-100',
+      '200': 'stroke-sky-200',
+      '300': 'stroke-sky-300',
+      '400': 'stroke-sky-400',
+      '500': 'stroke-sky-500',
+      '600': 'stroke-sky-600',
+      '700': 'stroke-sky-700',
+      '800': 'stroke-sky-800',
+      '900': 'stroke-sky-900',
+      '950': 'stroke-sky-950'
+    },
+    blue: {
+      '50': 'stroke-blue-50',
+      '100': 'stroke-blue-100',
+      '200': 'stroke-blue-200',
+      '300': 'stroke-blue-300',
+      '400': 'stroke-blue-400',
+      '500': 'stroke-blue-500',
+      '600': 'stroke-blue-600',
+      '700': 'stroke-blue-700',
+      '800': 'stroke-blue-800',
+      '900': 'stroke-blue-900',
+      '950': 'stroke-blue-950'
+    },
+    indigo: {
+      '50': 'stroke-indigo-50',
+      '100': 'stroke-indigo-100',
+      '200': 'stroke-indigo-200',
+      '300': 'stroke-indigo-300',
+      '400': 'stroke-indigo-400',
+      '500': 'stroke-indigo-500',
+      '600': 'stroke-indigo-600',
+      '700': 'stroke-indigo-700',
+      '800': 'stroke-indigo-800',
+      '900': 'stroke-indigo-900',
+      '950': 'stroke-indigo-950'
+    },
+    violet: {
+      '50': 'stroke-violet-50',
+      '100': 'stroke-violet-100',
+      '200': 'stroke-violet-200',
+      '300': 'stroke-violet-300',
+      '400': 'stroke-violet-400',
+      '500': 'stroke-violet-500',
+      '600': 'stroke-violet-600',
+      '700': 'stroke-violet-700',
+      '800': 'stroke-violet-800',
+      '900': 'stroke-violet-900',
+      '950': 'stroke-violet-950'
+    },
+    purple: {
+      '50': 'stroke-purple-50',
+      '100': 'stroke-purple-100',
+      '200': 'stroke-purple-200',
+      '300': 'stroke-purple-300',
+      '400': 'stroke-purple-400',
+      '500': 'stroke-purple-500',
+      '600': 'stroke-purple-600',
+      '700': 'stroke-purple-700',
+      '800': 'stroke-purple-800',
+      '900': 'stroke-purple-900',
+      '950': 'stroke-purple-950'
+    },
+    fuchsia: {
+      '50': 'stroke-fuchsia-50',
+      '100': 'stroke-fuchsia-100',
+      '200': 'stroke-fuchsia-200',
+      '300': 'stroke-fuchsia-300',
+      '400': 'stroke-fuchsia-400',
+      '500': 'stroke-fuchsia-500',
+      '600': 'stroke-fuchsia-600',
+      '700': 'stroke-fuchsia-700',
+      '800': 'stroke-fuchsia-800',
+      '900': 'stroke-fuchsia-900',
+      '950': 'stroke-fuchsia-950'
+    },
+    pink: {
+      '50': 'stroke-pink-50',
+      '100': 'stroke-pink-100',
+      '200': 'stroke-pink-200',
+      '300': 'stroke-pink-300',
+      '400': 'stroke-pink-400',
+      '500': 'stroke-pink-500',
+      '600': 'stroke-pink-600',
+      '700': 'stroke-pink-700',
+      '800': 'stroke-pink-800',
+      '900': 'stroke-pink-900',
+      '950': 'stroke-pink-950'
+    },
+    rose: {
+      '50': 'stroke-rose-50',
+      '100': 'stroke-rose-100',
+      '200': 'stroke-rose-200',
+      '300': 'stroke-rose-300',
+      '400': 'stroke-rose-400',
+      '500': 'stroke-rose-500',
+      '600': 'stroke-rose-600',
+      '700': 'stroke-rose-700',
+      '800': 'stroke-rose-800',
+      '900': 'stroke-rose-900',
+      '950': 'stroke-rose-950'
     }
   }
 }

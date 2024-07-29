@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import { BRIGHTNESS, INTENSITY } from "./color/brightness";
+import { BRIGHTNESS } from "./color/brightness";
 import { getColor } from "./color/colors";
 import { DocumentTextIcon } from "@heroicons/react/24/solid";
 
@@ -7,7 +7,7 @@ type IconParams = {className?: string, color: string, secondaryColor: string, br
 
 function IconContainer({className, color, secondaryColor, brightness, children}: IconParams) {
   return (
-    <span className={`${className} ${getColor("text", secondaryColor, brightness, INTENSITY.MEDIUM, true, false)} ${getColor("group-hover:text", color, brightness, INTENSITY.MEDIUM, true, true)} [&>svg]:h-5 [&>svg]:w-5`}>
+    <span className={`${className} ${getColor("text", secondaryColor, brightness, true, false)} ${getColor("group-hover:text", color, brightness, true, true)} [&>svg]:h-5 [&>svg]:w-5`}>
       {children}
     </span>
   )
@@ -17,7 +17,7 @@ export function Diamond({className, color, secondaryColor, brightness}: IconPara
   return (
     <IconContainer className={className} color={color} secondaryColor={secondaryColor} brightness={brightness}>
       <svg viewBox="0 0 500 500" height={40}>
-        <path className={`fill-current ${getColor("text", secondaryColor, brightness, INTENSITY.MEDIUM, true, false)}`} d='M408.563,48H103.438L16,179.156v24.786L199.421,480H312.579L496,203.942V179.156ZM391.438,80l63.407,95.111H347.739L317.808,80Zm-163.7,0h56.524l29.93,95.111H197.808ZM120.563,80h73.629l-29.931,95.111H57.155Zm96.016,368L56.525,207.111H163.318L219.813,448Zm36.1,0L196.187,207.111H315.813L259.318,448Zm42.739,0h-3.234l56.5-240.889H455.475Z' />
+        <path className={`fill-current ${getColor("text", secondaryColor, brightness, true, false)}`} d='M408.563,48H103.438L16,179.156v24.786L199.421,480H312.579L496,203.942V179.156ZM391.438,80l63.407,95.111H347.739L317.808,80Zm-163.7,0h56.524l29.93,95.111H197.808ZM120.563,80h73.629l-29.931,95.111H57.155Zm96.016,368L56.525,207.111H163.318L219.813,448Zm36.1,0L196.187,207.111H315.813L259.318,448Zm42.739,0h-3.234l56.5-240.889H455.475Z' />
       </svg>
     </IconContainer>
     
