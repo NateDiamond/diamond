@@ -51,7 +51,7 @@ export function ColorPicker({color, setColor, brightness, className}: ColorPicke
   const [selected, setSelected] = useState<boolean>(false);
 
   return (
-    <div className="relative w-24 h-24 flex flex-col justify-center items-end">
+    <div title="Pick a color" className="relative w-24 h-24 flex flex-col justify-center items-end">
       <a className={`${!previewColor && 'hidden'} absolute bottom-0 p-2 w-full ${previewColor && getColor("bg", previewColor!, brightness)} border ${previewColor && getColor("border", previewColor, brightness, true, false)} rounded-lg shadow-2xl ${previewColor && getColor("text", previewColor, brightness, true)}`}>
         {previewColor}
       </a>
