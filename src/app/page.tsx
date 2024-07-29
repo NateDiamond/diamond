@@ -20,14 +20,20 @@ export default function Home() {
   const [primaryColor, setPrimaryColor] = useState<Optional<string>>(undefined);
   const [secondaryColor, setSecondaryColor] = useState<Optional<string>>(undefined);
   const [resumeModalVisible, setResumeModalVisible] = useState<boolean>(false);
-  const [brightness, setBrightness] = useState<BRIGHTNESS>(BRIGHTNESS.LIGHT);
+  const [brightness, setBrightness] = useState<Optional<BRIGHTNESS>>(undefined);
 
   useEffect(() => {
     setPrimaryColor(COLORS[getRandom(COLORS.length)]);
     setSecondaryColor(COLORS[getRandom(COLORS.length)]);
+    console.log(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      setBrightness(BRIGHTNESS.DARK);
+    } else {
+      setBrightness(BRIGHTNESS.LIGHT);
+    }
   }, [])
 
-  if (!(primaryColor && secondaryColor)) {
+  if (!(primaryColor && secondaryColor && brightness !== undefined)) {
     return <div className="text-center pt-10">Loading...</div>
   }
 
@@ -114,35 +120,35 @@ export default function Home() {
                 </div>     
               </Button>
           </div>
-          <div className="flex flex-row justify-between items-center">
-            <Toggle
-              options={[
-                {name: BRIGHTNESS.DARK, title: "Dark Mode", icon: <MoonIcon/>},
-                {name: BRIGHTNESS.COLOR, title: "Color Mode", icon: <StarIcon/>},
-                {name: BRIGHTNESS.LIGHT, title: "Light Mode", icon: <SunIcon/>}
-              ]}
-              selectedOption={brightness}
-              setSelectedOption={setBrightness}
-              color={primaryColor}
-              secondaryColor={secondaryColor}
-              brightness={brightness}
-            />
-            <div className="grow flex flex-row justify-end items-end gap-2">
+          <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center">
+            <div className="flex flex-row justify-center">
+              <Toggle
+                options={[
+                  {name: BRIGHTNESS.DARK, title: "Dark Mode", icon: <MoonIcon className="w-8"/>},
+                  {name: BRIGHTNESS.COLOR, title: "Color Mode", icon: <StarIcon className="w-8"/>},
+                  {name: BRIGHTNESS.LIGHT, title: "Light Mode", icon: <SunIcon className="w-8"/>}
+                ]}
+                selectedOption={brightness}
+                setSelectedOption={setBrightness}
+                color={primaryColor}
+                secondaryColor={secondaryColor}
+                brightness={brightness}
+              />
+            </div>
+            <div className="grow flex flex-row justify-around sm:justify-end items-end gap-2">
               <ColorPicker
                 color={primaryColor}
                 setColor={setPrimaryColor}
                 brightness={brightness}
-                className={`shrink`}
                 />
               <ColorPicker
                 color={secondaryColor}
                 setColor={setSecondaryColor}
                 brightness={brightness}
-                className="shrink"
                 />
             </div>
           </div>
-          <div className="flex flex-row justify-end">
+          <div className="flex flex-row justify-center sm:justify-end">
             <a className={`${getColor("text", primaryColor, brightness, true)} ${getColor("hover:text", secondaryColor, brightness, true, false)} font-josefin hover:font-bold`} href="mailto:ndiamond39@gmail.com">Contact me</a>
           </div>
         </div>
