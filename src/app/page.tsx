@@ -101,7 +101,7 @@ export default function Home() {
               <Text className="pb-2" color={secondaryColor} brightness={brightness}>
                 Projects
               </Text>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-3 gap-4">
                 <Button description="Mint Doginals with my API" className="group h-32" color={primaryColor} secondaryColor={secondaryColor} brightness={brightness} onPress={() => window.open("https://www.doginalsbot.io")}>
                   <div className="py-4">
                     <img className="group-hover:animate-bounce" width={70} src="doginalsBotLogo.webp"/>
@@ -109,6 +109,9 @@ export default function Home() {
                 </Button>
                 <Button description="Mint, trade, and admire crypto and NFTs with our new app" className="group h-32" color={primaryColor} secondaryColor={secondaryColor} brightness={brightness} onPress={() => window.open("https://www.wildtangz.com")}>
                   <img className="group-hover:animate-bounce" width={70} src="wildtangz.png" />
+                </Button>
+                <Button description="West Palm Beach Jewish's WordPress website" className="group h-32" color={primaryColor} secondaryColor={secondaryColor} brightness={brightness} onPress={() => window.open("https://www.westpalmjewish.com")}>
+                  <img className="group-hover:animate-bounce" width={70} src="westpalmjewish.png" />
                 </Button>
               </div>
             </div>                
